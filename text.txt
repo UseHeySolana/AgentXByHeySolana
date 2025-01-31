@@ -1,0 +1,11 @@
+Sections to work on
+
+Hero ;//done
+Carousel:done //done
+Details:Started
+Security: Done //done
+RoadMap:Done //done
+FAQ: Done remaining Text and content
+Shields: //done
+LastDetails://done
+Footer//done
