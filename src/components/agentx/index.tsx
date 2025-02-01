@@ -39,18 +39,27 @@ export default function AgentX() {
   }
   const registerUser = async () => {
     setLoading(true)
+    if (userDetails.email_address == "" || userDetails.phone_number == "" || userDetails.username == "" || userDetails.wallet_address == "") {
+      toastMessage("error", "All fields are required")
+      setLoading(false);
+      return;
+    }
     const available = await checkUser(userDetails.username);
-
     if (!userDetails.user_id || userDetails.user_id == "") {
       toastMessage("error", "Invalid Username");
       setLoading(false);
       return;
     }
 
+
+
     const response = await saveUserToDB(userDetails);
     if (response) {
       setLoading(false)
       console.log(response);
+    } else {
+      setLoading(false);
+      toastMessage("error", "An Error Occured")
     }
 
 
@@ -82,8 +91,8 @@ export default function AgentX() {
               <input type="text" onChange={(e) => { setUserDetails({ ...userDetails, phone_number: e.target.value }) }} placeholder="Enter your mobile number" className="input input-bordered w-full " />
               <input type="text" onChange={(e) => { setUserDetails({ ...userDetails, wallet_address: e.target.value }) }} placeholder="Enter your wallet address" className="input input-bordered w-full " />
 
-              <div className="flex justify-center items-center">
-                <button onClick={registerUser} className="btn w-5/12">{loading ? <CircularProgress size={12} /> : "Sign up"}</button>
+              <div className="flex justify-center items-center py-5">
+                <button onClick={registerUser} className="btn w-5/12 btn-primary">{loading ? <CircularProgress size={12} /> : "Sign up"}</button>
               </div>
             </div>
           </div>
