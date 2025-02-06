@@ -26,9 +26,9 @@ export default function AgentX() {
     setTimeout(() => {
       setToast({
         type: "",
-        "message": ""
-      })
-    }, 1500)
+        message: "",
+      });
+    }, 3000);
   }
 
   const checkUser = async (username: string) => {
@@ -52,15 +52,19 @@ export default function AgentX() {
     }
 
 
-
-    const response = await saveUserToDB(userDetails);
-    if (response) {
-      setLoading(false)
-      console.log(response);
-    } else {
-      setLoading(false);
-      toastMessage("error", "An Error Occured")
-    }
+try {
+  const response = await saveUserToDB(userDetails);
+  if (response.status) {
+    setLoading(false);
+    toastMessage("success", response.message);
+  } else {
+    setLoading(false);
+    toastMessage("error", response.message);
+  }
+} catch (e: any) {
+  setLoading(false);
+  toastMessage("error", "User Already Registered");
+}
 
 
 
