@@ -37,20 +37,26 @@ export default function AgentX() {
     setUserDetails({ ...userDetails, user_id: user.userId })
     return user.userId;
   }
+
   const registerUser = async () => {
     setLoading(true)
-    if (userDetails.email_address == "" || userDetails.phone_number == "" || userDetails.username == "" || userDetails.wallet_address == "") {
-      toastMessage("error", "All fields are required")
-      setLoading(false);
-      return;
-    }
     const available = await checkUser(userDetails.username);
-    if (!userDetails.user_id || userDetails.user_id == "") {
-      toastMessage("error", "Invalid Username");
+    if (!available) {
+      toastMessage("error", "Username is not correct");
       setLoading(false);
       return;
     }
 
+    // Validate other required fields
+    if (
+      !userDetails.email_address ||
+      !userDetails.phone_number ||
+      !userDetails.wallet_address
+    ) {
+      toastMessage("error", "All fields are required");
+      setLoading(false);
+      return;
+    }
 
 try {
   const response = await saveUserToDB(userDetails);
