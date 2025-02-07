@@ -7,7 +7,7 @@ export default function Cron() {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {git a
+            try {
                 const res = await checkMentions("agentheysolana");
             } catch (error) {
                 console.error("Fetch error:", error);
