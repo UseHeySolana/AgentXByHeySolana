@@ -62,13 +62,8 @@ const saveUserToDB = async (userDetails: any) => {
     formData.append('wallet_address', userDetails.wallet_address);
 
     const response = await request.post(formData, `${DBurl}/register_bot_user`);
-    if (response) {
-      const data = await response.json();
-      return data;
-    } else {
-      console.log("User Registered!");
-      return false;
-    }
+    const data = await response.json();
+    return data;
   } catch (e) {
     console.error("Error fetching Data", e);
     return false;
