@@ -52,6 +52,38 @@ const fetchUser = async (username: string) => {
   }
 };
 
+
+const checkMentions = async (tag: string) => {
+  try {
+    const response = await request.postJson({ "tag": tag }, `${TwitUrl}/check-mentions`);
+    if (response) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.log("No Such User!");
+      return false;
+    }
+  } catch (e) {
+    console.error("Error fetching Data", e);
+    return false;
+  }
+};
+
+const processMentions = async () => {
+  try {
+    const response = await request.get(`${TwitUrl}/process-mentions`);
+    if (response) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.log("No Such User!");
+      return false;
+    }
+  } catch (e) {
+    console.error("Error fetching Data", e);
+    return false;
+  }
+};
 const saveUserToDB = async (userDetails: any) => {
   try {
     const formData = new FormData()
@@ -74,4 +106,6 @@ const saveUserToDB = async (userDetails: any) => {
 export {
   fetchUser,
   saveUserToDB,
+  checkMentions,
+  processMentions,
 };
