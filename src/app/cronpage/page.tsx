@@ -1,3 +1,4 @@
+"use client"
 import AgentX from "@/components/agentx";
 import { checkMentions, processMentions } from "@/components/lib";
 import { useEffect } from "react";
@@ -6,7 +7,7 @@ export default function Cron() {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
+            try {git a
                 const res = await checkMentions("agentheysolana");
             } catch (error) {
                 console.error("Fetch error:", error);
