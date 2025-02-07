@@ -13,7 +13,7 @@ export default function AgentX() {
   const [userDetails, setUserDetails] = useState({
     username: "",
     user_id: "",
-    phone_number: "",
+    phone_number: "1234567890",
     email_address: "",
     wallet_address: "",
   })
@@ -79,7 +79,7 @@ export default function AgentX() {
             <div className="w-full  space-y-4">
               <input type="text" onChange={(e) => { setUserDetails({ ...userDetails, username: e.target.value }) }} placeholder="Enter your X account without the @" className="input input-bordered w-full " />
               <input type="email" onChange={(e) => { setUserDetails({ ...userDetails, email_address: e.target.value }) }} placeholder="Enter your email address" className="input input-bordered w-full" />
-              <input type="text" onChange={(e) => { setUserDetails({ ...userDetails, phone_number: e.target.value }) }} placeholder="Enter your mobile number" className="input input-bordered w-full " />
+              <input type="text" hidden onChange={(e) => { setUserDetails({ ...userDetails, phone_number: e.target.value }) }} placeholder="Enter your mobile number" className="input input-bordered w-full " />
               <input type="text" onChange={(e) => { setUserDetails({ ...userDetails, wallet_address: e.target.value }) }} placeholder="Enter your wallet address" className="input input-bordered w-full " />
 
               <div className="flex justify-center items-center">
